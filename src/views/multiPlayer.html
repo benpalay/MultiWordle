@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>MULTIWORDLE</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/cdn/style.css">
+
+
+<body>
+    <div class="container">
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info btn-lg pull-right" data-toggle="modal"
+            data-target="#Instruction">Multi-Player Instructions </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="Instruction" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 style="color: black;" class="modal-title">Multiplayer Information:</h3>
+                    </div>
+                    <div class="modal-body">
+                        <h3 style="color: black;">There are two options to choose from:</h3>
+                        <nr>
+                            <h4 style="color: black;"> Option 1: Two Player Game - Guessing the word of the day</h4>
+                            <p style="color:black">One player needs to start the game by clicking on "CREATE 2 Player
+                                Game". This will generate a unique game ID. <br>
+                                This player should then share the game ID with one other person. <br> The second player
+                                must click on "JOIN a Game" and enter the Game ID they
+                                have recieved from the other player <br> Both players must try and guess the word of the
+                                day </p>
+                            <h4 style="color: black;"> Option 2: Three Player Game -Guessing a word chosen by one of the players</h4>
+                            <p style="color:black">One player needs to start the game by entering a 5-letter word of
+                                their choice and clicking on "CREATE 3 Player Game". This will generate a unique game
+                                ID. <br>
+                                This player should then share the game ID with two other people. <br> The second and
+                                third player must click on "JOIN a Game" and enter the Game ID they
+                                have recieved from the first player <br> Both players must try and guess the word the
+                                first player has generated </p>
+                            <h4 style="color: black;"> Option 3: Four Player Game - Once a Multi-player game has began:</h4>
+                            <p style="color: black;">Each player must guess a 5 letter word and enter it via the
+                                onscreen keyboard or via your physical keyboard.<br>
+                                Click Enter <br>
+                                If the word you entered is valid, you will be given feedback: <br></p> <b>
+                                <p style="color:#538d4e" ;> Green: The letter is in the word and in the correct
+                                    position <br> </p>
+                                <p style="color:#3a4cb5"> Blue: The letter is in the word but is in the wrong
+                                    position <br></p>
+                                <p style="color:#515157"> Grey: The letter is not in the word <br></p>
+                            </b>
+                            <h4 style="color: orangered;">The first player to correctly guess the word WINS!!!.<br></h4>
+                            <p style="color: black;">Each player has 6 chances to guess the correct word
+                                GOODLUCK!!!!.<br>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="gameArea">
+            <!-- This is where the templates defined below will be used -->
+        </div>
+
+        <script id="intro-screen-template" type="text/template">
+
+        <div class="titleWrapper">
+
+            <div class="title">
+               <h1> MULTIWORDLE </h1>
+            </div>
+            <div style= 'text-align:center' class="buttons">
+
+                <button id="btnCreateGame2" class="Button">CREATE 2 Player Game</button>
+                <br>
+                <br>
+                <br>
+                <br>
+                <input id="hostWord" type="text" placeholder = 'Choose a 5-letter Word' style="color:black"; />
+                 <button id="btnCreateGame3" class="Button">CREATE 3 Player Game</button>
+                 <br>
+                 <br>
+                 <br>
+                 <br>
+                <button id="btnJoinGame" class="Button">JOIN a Game</button>
+                <div style="clear:both"></div>
+            </div>
+
+        </div>
+    </div>
+    </script>
+
+        <script id="create-game-template" type="text/template">
+        <div style= 'text-align:center' class="createGameWrapper">
+            <div class="info"> Game ID:</div>
+            <div id="spanNewGameCode" class="gameId"></div>
+
+            <div id="playersWaiting" style= 'text-align:center'> Waiting for other players to join</div>
+            
+        </div>
+    </script>
+
+        <!-- This screen appears when a player clicks "JOIN a Game"  -->
+        <button id="btnStart" style='display: none;' class='Button'>START</button>
+        <script id="join-game-template" type="text/template">
+        <div style= 'text-align:center' class="joinGameWrapper">
+            
+            <div class="info">
+                <input id="inputGameId" type="text" placeholder = 'Game ID' style="color: black;" />
+            </div>
+                <div id="playerWaitingMessage"> </div>
+           
+        </div>
+    </script>
+
+        <script id="waiting-screen" type="text/template">
+            <div class="titleWrapper">
+                    <h3>waiting for players</h3>
+            </div>
+            </script>
+        <script id="host-3-template" type="text/template">
+        <div class="titleWrapper" style= 'text-align:center'>
+            <br>
+            <br>
+            <br>
+            <br>
+                <h3> You are waiting while 2 other players battle it out using your chosen word!</h3>
+
+                <div class="messageContainer"></div>
+        </div>
+        </script>
+
+
+        <script id="host-game-template" type="text/template">
+        <div id="wordArea">
+        </div>
+        
+
+<div class="gameContainer">
+            <div class="title">
+                  <h1>MULTIWORDLE MULTI-PLAYER</h1>
+            </div>
+            <button type="button" id='logButton' class="btn btn-info btn-lg pull-left" data-toggle="modal" data-target="#Logs" style="position:relative; right:400px; bottom:60px;">View
+            logs
+        </button>
+        <div class="modal fade" id="Logs" role="dialog">
+            <div class="modal-dialog">
+        
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 style="color:black" class="modal-title">Logs:</h4>
+                    </div>
+                    <div style= "color:black;"class="modal-body logs">
+        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+        
+            </div>
+        </div>
+            <div class="messageContainer"></div>
+            <div class = 'TITLECONTAINERS'>
+            <div class="tileContainer1"></div>
+            <div class="tileContainer2"></div>
+            </div>
+            <div class="keyContainer"></div>
+      </div>
+
+    </script>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="module" src="/cdn/playMulti.js"></script>
+
+</body>
+
+</html>

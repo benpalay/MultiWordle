@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lan="en" and dir="Itr">
+
+    <head>
+        <meta charset="utf-8">
+        <title> Login</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>        
+        <link rel="stylesheet" href="/cdn/style.css">
+        <script defer src="/cdn/scripts/login.js"> </script>
+    </head>
+
+<body>
+<div class="container">
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#Instruction" >Instructions </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="Instruction" role="dialog">
+        <div class="modal-dialog">
+        
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 style="color: black;" class="modal-title">How to Log in:</h4>
+            </div>
+            <div class="modal-body">
+            <p style="color: black;">If it is your first time playing please click the "Sign Up" button in the top left hand corner and enter a valid email address and password<br>
+                If you are a returning player please enter your username and password that you have already registered. </p><br>
+
+           
+           
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+
+    <form class="box" id="login-form">
+
+        <h1>
+            login
+        </h1>
+        <input type="text" name="username" placeholder="Enter Username" id="username-field">
+        <input type="password" name="password" placeholder="Enter Password" id="password-field">
+        <input type="submit" name="" value="Login" id="login-form-submit">
+
+
+    </form> 
+<a style="color: white ;" href="/views/signup">Sign Up</a>    
+</div>
+
+</body>
+
+
+
+</html>

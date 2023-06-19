@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>MULTIWORDLE</title>
+    <link rel="stylesheet" type="text/css" href="/cdn/style.css" />
+</head>
+
+<body>
+    <div class="game">
+
+        <div class="title">
+            <h1>Welcome to MULTIWORDLE!</h1>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class='choose-mode'>
+            <h3>Choose a game mode</h3>
+            <form action="singlePlayer" method="get">
+                <button type="submit" id="singlePlayerButton" class="Button">Single Player</button>
+            </form>
+            <br>
+            <br>
+            <form action="multiPlayer" method="get">
+                <button type="submit" id="multiPlayerButton" class="Button">MultiPlayer</button>
+            </form>
+        </div>
+
+    </div>
+<script src="/socket.io/socket.io.js"></script>
+</body>
+  
+</html>
